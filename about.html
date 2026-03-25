@@ -1,0 +1,1866 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stackly Cyber security </title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet">
+
+<!-- Swiper -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+
+<!-- Animate -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+
+<style>
+    *{margin:0;padding:0;box-sizing:border-box;font-family:"Segoe UI",sans-serif;}
+    body{height:2000px;background:linear-gradient(120deg,#e0f2fe,#f5f9ff);}
+    
+    
+    /* HEADER */
+    header{
+    position:fixed;
+    top:0;left:0;width:100%;
+    background:rgba(255,255,255,0.6);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid rgba(255,255,255,0.3);
+    box-shadow:0 8px 30px rgba(0,0,0,0.05);
+    transition:0.3s;
+    z-index:1000;
+    }
+    
+    /* SHRINK */
+    header.shrink{
+    padding:5px 0;
+    box-shadow:0 4px 15px rgba(0,0,0,0.08);
+    }
+    
+    .navbar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:18px 40px;
+    position:relative;
+    }
+    
+    /* LEFT LOGO */
+    .logo img{height:40px;}
+    
+    /* CENTER NAV */
+    .nav-links{
+    position:absolute;
+    left:50%;
+    transform:translateX(-50%);
+    display:flex;
+    gap:30px;
+    }
+    
+    .nav-links a{
+    text-decoration:none;
+    color:#0f172a;
+    font-weight:500;
+    position:relative;
+    }
+    
+    /* ACTIVE */
+    .nav-links a.active,
+    .nav-links a:hover{color:#d2ff28;;}
+    
+    .nav-links a.active::after,
+    .nav-links a:hover::after{
+    content:"";
+    position:absolute;
+    bottom:-6px;left:0;
+    width:100%;height:2px;
+    background:#d2ff28;
+    }
+    
+    /* RIGHT */
+    .right{display:flex;gap:12px;}
+    
+    .btn{
+    padding:8px 18px;
+    border-radius:30px;
+    border:none;
+    cursor:pointer;
+    font-size:14px;
+    transition:0.3s;
+    }
+    
+    .login{background:transparent;border:1px solid #d2ff28;color:#d2ff28;}
+    .login:hover{background:#d2ff28;;color:white;}
+    
+    .register{background:#d2ff28;color:white;}
+    .register:hover{background:#d2ff28;}
+    
+    /* MENU */
+    .menu-toggle{display:none;font-size:22px;cursor:pointer;}
+    
+    /* MOBILE MENU */
+    .mobile-menu{
+    position:fixed;
+    top:0;left:-100%;
+    width:260px;height:100vh;
+    background:white;
+    padding:20px;
+    transition:0.3s;
+    box-shadow:10px 0 25px rgba(0,0,0,0.1);
+    z-index:2000;
+    }
+    .mobile-menu.active{left:0;}
+    .mobile-menu a{display:block;margin:15px 0;text-decoration:none;color:#0f172a;}
+    
+    /* OVERLAY */
+    .overlay{
+    position:fixed;top:0;left:0;width:100%;height:100%;
+    background:rgba(0,0,0,0.4);display:none;z-index:1500;
+    }
+    .overlay.active{display:block;}
+    
+    /* RESPONSIVE */
+    @media(max-width:900px){
+    .nav-links{display:none;}
+    .right{display:none;}
+    .menu-toggle{display:block;}
+    }
+    
+    </style>
+    </head>
+    
+    <body>
+    
+      
+    
+    <div class="overlay" id="overlay"></div>
+    
+    <header id="header">
+    
+    <div class="navbar">
+    
+    <div class="menu-toggle" onclick="toggleMenu()">
+    <i class="fa fa-bars"></i>
+    </div>
+    
+    <div class="logo">
+      <a href="./index.html">
+    <img src="./logo.webp" alt="Stackly">
+      </a>
+    </div>
+    
+    <div class="nav-links" id="navLinks">
+        <a href="./index.html">HOME</a>
+        <a href="./about.html">ABOUT</a>
+        <a href="./services.html">SERVICES</a>
+        <a href="./FAQ.html">FAQ</a>
+        <a href="./contact.html">CONTACT</a>
+    </div>
+    
+    
+    <div class="right">
+      <button class="btn login" onclick="location.href='login.html'">Login</button>
+      <button class="btn register" onclick="location.href='register.html'">Register</button>
+    </div>
+    
+    </div>
+    
+    </header>
+    
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="./index.html">HOME</a>
+        <a href="./about.html">ABOUT</a>
+        <a href="./service.html">SERVICES</a>
+        <a href="./FAQ.html">FAQ</a>
+        <a href="./contact.html">CONTACT</a>
+    <hr>
+    <a href="./login.html">Login</a>
+    <a href="./register.html">Register</a>
+    </div>
+    
+    <script>
+    // MENU
+    function toggleMenu(){
+    const menu=document.getElementById("mobileMenu");
+    const overlay=document.getElementById("overlay");
+    menu.classList.toggle("active");
+    overlay.classList.toggle("active");
+    }
+    
+    overlay.onclick=()=>{
+    document.getElementById("mobileMenu").classList.remove("active");
+    overlay.classList.remove("active");
+    };
+    
+    // SHRINK HEADER
+    window.addEventListener("scroll",()=>{
+    const header=document.getElementById("header");
+    header.classList.toggle("shrink",window.scrollY>50);
+    });
+    
+    // ACTIVE LINK
+    const links=document.querySelectorAll(".nav-links a");
+    links.forEach(link=>{
+    link.addEventListener("click",()=>{
+    links.forEach(l=>l.classList.remove("active"));
+    link.classList.add("active");
+    });
+    });
+    </script>
+    
+    
+    
+    </body>
+<section class="faqhero-section">
+
+    <!-- OVERLAY -->
+    <div class="faqhero-overlay"></div>
+  
+    <div class="faqhero-container faqhero-reveal">
+  
+      <!-- HEADING -->
+      <h1 class="faqhero-title">ABOUT</h1>
+  
+      <!-- SUBTEXT -->
+      <!-- <p class="faqhero-sub">Find answers to your questions about our IT services</p> -->
+  
+      <!-- BREADCRUMB -->
+      <div class="faqhero-breadcrumb">
+        <a href="./index.html">Home</a>
+        <span>→</span>
+        <span class="active">ABOUT</span>
+      </div>
+  
+    </div>
+  
+  </section>
+
+  <Style>
+    /* SECTION */
+.faqhero-section{
+  position:relative;
+  height:60vh;
+  min-height:400px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  color:#fff;
+  overflow:hidden;
+
+  background:url("./im2.webp") center/cover no-repeat;
+}
+
+/* OVERLAY */
+.faqhero-overlay{
+  position:absolute;
+  width:100%;
+  height:100%;
+  background:linear-gradient(135deg, rgba(0,0,0,0.7), rgba(0,255,150,0.2));
+  backdrop-filter:blur(4px);
+}
+
+/* CONTAINER */
+.faqhero-container{
+  position:relative;
+  z-index:2;
+  padding:20px;
+}
+
+/* TITLE */
+.faqhero-title{
+  font-size:64px;
+  font-weight:700;
+  letter-spacing:2px;
+  margin-bottom:10px;
+  text-shadow:0 0 20px #00ffcc;
+}
+
+/* SUBTEXT */
+.faqhero-sub{
+  font-size:18px;
+  opacity:0.9;
+  margin-bottom:20px;
+}
+
+/* BREADCRUMB */
+.faqhero-breadcrumb{
+  display:inline-flex;
+  gap:10px;
+  padding:10px 25px;
+  border-radius:50px;
+  background:rgba(255,255,255,0.08);
+  backdrop-filter:blur(10px);
+  box-shadow:0 0 15px rgba(0,255,150,0.4);
+}
+
+.faqhero-breadcrumb a{
+  color:#00ffcc;
+  text-decoration:none;
+}
+
+.faqhero-breadcrumb span{
+  opacity:0.8;
+}
+
+.faqhero-breadcrumb .active{
+  color:#fff;
+  font-weight:600;
+}
+
+/* SCROLL ANIMATION */
+.faqhero-reveal{
+  opacity:0;
+  transform:translateY(60px);
+  transition:0.8s ease;
+}
+
+.faqhero-show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* RESPONSIVE */
+
+/* TABLET */
+@media(max-width:992px){
+  .faqhero-title{
+    font-size:48px;
+  }
+}
+
+/* MOBILE */
+@media(max-width:600px){
+  .faqhero-section{
+    height:50vh;
+  }
+
+  .faqhero-title{
+    font-size:36px;
+  }
+
+  .faqhero-sub{
+    font-size:14px;
+  }
+
+  .faqhero-breadcrumb{
+    font-size:13px;
+    padding:8px 18px;
+  }
+}
+  </Style>
+
+<script>
+    const faqHero = document.querySelector(".faqhero-reveal");
+    
+    function revealFAQHero(){
+      const top = faqHero.getBoundingClientRect().top;
+      if(top < window.innerHeight - 50){
+        faqHero.classList.add("faqhero-show");
+      }
+    }
+    
+    window.addEventListener("load", revealFAQHero);
+    window.addEventListener("scroll", revealFAQHero);
+    </script>
+
+
+
+
+<section class="about2">
+
+    <div class="about2-container">
+  
+      <!-- LEFT -->
+      <div class="about2-left">
+  
+        <div class="about2-tag reveal-up">About Us</div>
+  
+        <h2 class="about2-heading">
+          <span class="reveal-up delay1">Driving Innovation</span>
+          <span class="reveal-up delay2">Through Smart IT Solutions</span>
+          <!-- <span class="reveal-up delay3">Solutions</span> -->
+        </h2>
+  
+        <p class="about2-text reveal-up delay4">
+          We deliver cutting-edge IT services designed to accelerate digital transformation.
+          From cloud systems to cybersecurity, we help businesses scale faster and smarter.
+        </p>
+  
+        <div class="about2-features">
+          <div class="feature reveal-up delay5"><i class="fas fa-shield-alt"></i> Secure Systems</div>
+          <div class="feature reveal-up delay6"><i class="fas fa-cloud"></i> Cloud Integration</div>
+          <div class="feature reveal-up delay7"><i class="fas fa-robot"></i> AI Automation</div>
+        </div>
+  
+        <div class="about2-stats">
+          <div class="stat-card reveal-up delay8">
+            <h3 class="counter2" data-target="12">0</h3>
+            <p>Years Experience</p>
+          </div>
+  
+          <div class="stat-card reveal-up delay9">
+            <h3 class="counter2" data-target="5">0</h3>
+            <p>Faster Delivery</p>
+          </div>
+        </div>
+  
+      </div>
+  
+      <!-- RIGHT -->
+      <div class="about2-right">
+  
+        <div class="video-box reveal-up delay3" id="video-parallax">
+  
+          <video autoplay muted loop playsinline>
+            <source src="./IT.mp4" type="video/mp4">
+          </video>
+  
+          <div class="review-card">
+            <div class="client">
+              <img src="./h2.webp">
+              <div>
+                <h4>Client Review</h4>
+                <div class="stars">★★★★★</div>
+              </div>
+            </div>
+            <p>“Highly scalable IT solutions that boosted our growth rapidly.”</p>
+          </div>
+  
+        </div>
+  
+      </div>
+  
+    </div>
+  
+  </section>
+  
+  <style>
+  
+  
+  /* COMMON HOVER BASE */
+  .feature,
+  .stat-card{
+    position:relative;
+    overflow:hidden;
+    transition:all 0.35s ease;
+    cursor:pointer;
+  }
+  
+  /* ZOOM + LIFT */
+  .feature:hover,
+  .stat-card:hover{
+    transform:scale(1.06) translateY(-6px);
+  }
+  
+  /* GLOW BORDER EFFECT */
+  .feature::before,
+  .stat-card::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    border-radius:inherit;
+    padding:1px;
+    background:linear-gradient(120deg, #d2ff28, transparent, #d2ff28);
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite:xor;
+            mask-composite:exclude;
+    opacity:0;
+    transition:0.4s;
+  }
+  
+  /* GLOW ON HOVER */
+  .feature:hover::before,
+  .stat-card:hover::before{
+    opacity:1;
+  }
+  
+  /* INNER GLOW LIGHT */
+  .feature::after,
+  .stat-card::after{
+    content:"";
+    position:absolute;
+    width:200%;
+    height:200%;
+    background:radial-gradient(circle, rgba(210,255,40,0.25), transparent 60%);
+    top:-50%;
+    left:-50%;
+    opacity:0;
+    transition:0.5s;
+  }
+  
+  /* LIGHT GLOW ANIMATION */
+  .feature:hover::after,
+  .stat-card:hover::after{
+    opacity:1;
+    animation:glowMove 3s linear infinite;
+  }
+  
+  @keyframes glowMove{
+    from{transform:rotate(0deg);}
+    to{transform:rotate(360deg);}
+  }
+  
+  /* ICON GLOW */
+  .feature:hover i{
+    color:#d2ff28;
+    text-shadow:0 0 12px #d2ff28;
+  }
+  
+  /* TEXT GLOW */
+  .stat-card:hover h3{
+    color:#d2ff28;
+    text-shadow:0 0 10px #d2ff28;
+  }
+  
+  /* MOBILE OPTIMIZATION (no heavy hover) */
+  @media(max-width:768px){
+  
+    .feature:hover,
+    .stat-card:hover{
+      transform:none;
+    }
+  
+    .feature::before,
+    .feature::after,
+    .stat-card::before,
+    .stat-card::after{
+      display:none;
+    }
+  }
+  
+  .about2{
+    background:#050807;
+    color:#fff;
+    padding:100px 8%;
+    overflow:hidden;
+  }
+  
+  .about2-container{
+    display:flex;
+    align-items:center;
+    gap:80px;
+  }
+  
+  /* LEFT */
+  .about2-left{flex:1;}
+  
+  .about2-tag{
+    padding:8px 20px;
+    border-radius:50px;
+    background:#d2ff28;
+    color:#000;
+    display:inline-block;
+    margin-bottom:20px;
+    font-weight:600;
+  }
+  
+  .about2-heading span{
+    display:block;
+    font-size:48px;
+    line-height:1.2;
+  }
+  
+  .about2-text{
+    font-size: 28px;
+    color:#bbb;
+    margin:20px 0 25px;
+    line-height:1.7;
+  }
+  
+  /* FEATURES */
+  .about2-features{
+    font-size: 28px;
+    display:flex;
+    gap:20px;
+    margin-bottom:30px;
+  }
+  
+  .feature{
+    font-size: 28px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    background:#0b0f0d;
+    padding:10px 14px;
+    border-radius:10px;
+  }
+  
+  .feature i{color:#d2ff28;}
+  
+  /* STATS */
+  .about2-stats{
+    display:flex;
+    gap:20px;
+  }
+  
+  .stat-card{
+    background:#0b0f0d;
+    padding:25px;
+    border-radius:15px;
+    flex:1;
+  }
+  
+  /* VIDEO */
+  .video-box{
+    position:relative;
+    border-radius:20px;
+    overflow:hidden;
+  }
+  
+  .video-box video{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    border-radius:20px;
+    transform:scale(1.05);
+    transition:0.2s;
+  }
+  
+  /* FLOAT CARD */
+  .review-card{
+    position:absolute;
+    bottom:20px;
+    left:20px;
+    width:240px;
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(10px);
+    padding:15px;
+    border-radius:15px;
+    transition:0.2s;
+  }
+  
+  .client{
+    display:flex;
+    gap:10px;
+    margin-bottom:10px;
+  }
+  
+  .client img{
+    width:45px;
+    height:45px;
+    border-radius:50%;
+    border:2px solid #d2ff28;
+  }
+  
+  .stars{color:gold;}
+  
+  /* SCROLL ANIMATION */
+  .reveal-up{
+    opacity:0;
+    transform:translateY(80px);
+    transition:all 0.9s ease;
+  }
+  
+  .reveal-up.active{
+    opacity:1;
+    transform:translateY(0);
+  }
+  
+  /* DELAYS */
+  .delay1{transition-delay:0.1s;}
+  .delay2{transition-delay:0.2s;}
+  .delay3{transition-delay:0.3s;}
+  .delay4{transition-delay:0.4s;}
+  .delay5{transition-delay:0.5s;}
+  .delay6{transition-delay:0.6s;}
+  .delay7{transition-delay:0.7s;}
+  .delay8{transition-delay:0.8s;}
+  .delay9{transition-delay:0.9s;}
+  
+  /* RESPONSIVE */
+  @media(max-width:992px){
+    .about2-container{
+      flex-direction:column-reverse;
+    }
+    .about2-heading span{
+      font-size:34px;
+    }
+  }
+  
+  @media(max-width:576px){
+    .about2{
+      padding:60px 20px;
+    }
+    .about2-heading span{
+      font-size:26px;
+    }
+    .about2-features,
+    .about2-stats{
+      flex-direction:column;
+    }
+  }
+    </style>
+  
+  <script>
+  
+    /* SCROLL ANIMATION */
+    const reveals = document.querySelectorAll(".reveal-up");
+    
+    function reveal(){
+      reveals.forEach(el=>{
+        let top = el.getBoundingClientRect().top;
+        if(top < window.innerHeight - 80){
+          el.classList.add("active");
+        }
+      });
+    }
+    
+    window.addEventListener("scroll", reveal);
+    window.addEventListener("load", reveal);
+    
+    /* COUNTER */
+    document.querySelectorAll(".counter2").forEach(counter=>{
+      let update = ()=>{
+        let target = +counter.dataset.target;
+        let count = +counter.innerText;
+        let inc = target / 40;
+    
+        if(count < target){
+          counter.innerText = Math.ceil(count + inc);
+          setTimeout(update, 40);
+        } else{
+          counter.innerText = target + "+";
+        }
+      };
+      update();
+    });
+    
+    /* PARALLAX VIDEO */
+    const box = document.getElementById("video-parallax");
+    
+    if(window.innerWidth > 768){
+      box.addEventListener("mousemove", e=>{
+        const rect = box.getBoundingClientRect();
+    
+        let x = e.clientX - rect.left;
+        let y = e.clientY - rect.top;
+    
+        let moveX = (x - rect.width/2)/30;
+        let moveY = (y - rect.height/2)/30;
+    
+        box.querySelector("video").style.transform =
+          `scale(1.1) translate(${moveX}px, ${moveY}px)`;
+    
+        box.querySelector(".review-card").style.transform =
+          `translate(${moveX*1.5}px, ${moveY*1.5}px)`;
+      });
+    
+      box.addEventListener("mouseleave", ()=>{
+        box.querySelector("video").style.transform = "scale(1.05)";
+        box.querySelector(".review-card").style.transform = "translate(0)";
+      });
+    }
+    
+    </script>
+  
+  
+  
+  <section class="itfx-section" id="itfx-section">
+  
+    <div class="itfx-container">
+  
+      <div class="itfx-grid">
+  
+        <!-- LEFT (FROM LEFT) -->
+        <div class="itfx-card itfx-bg1 itfx-reveal-left">
+          <div class="itfx-content">
+            <h3>Advanced IT Infrastructure Solutions</h3>
+            <p>
+              Build scalable and secure IT systems with modern cloud and enterprise solutions.
+            </p>
+            <a href="404.html" class="itfx-btn">
+              Explore Services <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+  
+        <!-- CENTER (FROM BOTTOM) -->
+        <div class="itfx-card itfx-center itfx-reveal-bottom">
+  
+          <div class="itfx-shape"></div>
+  
+          <div class="itfx-content">
+            <h3>Smart Digital Transformation</h3>
+  
+            <div class="itfx-counter">
+              <h2 class="itfx-count" data-target="750">0</h2>
+              <p>Projects Delivered</p>
+            </div>
+  
+          </div>
+        </div>
+  
+        <!-- RIGHT (FROM RIGHT) -->
+        <div class="itfx-card itfx-bg2 itfx-reveal-right">
+          <div class="itfx-content">
+  
+            <h3>Trusted by Global Clients</h3>
+  
+            <div class="itfx-clients">
+              <div class="itfx-avatars">
+                <img src="./ava1.webp">
+                <img src="./ava2.webp">
+                <img src="./ava3.webp">
+                <span>20+</span>
+              </div>
+              <div class="itfx-number">50K+</div>
+            </div>
+  
+          </div>
+        </div>
+  
+      </div>
+  
+    </div>
+  
+  </section>
+  
+  <style>
+  
+  /* SECTION */
+  .itfx-section{
+    background:#050807;
+    padding:120px 8%;
+    color:#fff;
+  }
+  
+  /* GRID */
+  .itfx-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:35px;
+    
+  }
+  
+  /* CARD */
+  .itfx-card{
+    
+    position:relative;
+    padding:55px;
+    border-radius:22px;
+    overflow:hidden;
+    background:#0b0f0d;
+    transition:0.4s;
+  }
+  
+  /* BIGGER SIZE */
+  .itfx-card{
+    min-height:320px;
+  }
+  
+  /* BACKGROUND */
+  .itfx-bg1{
+    background:url("./h1.webp") center/cover;
+  }
+  .itfx-bg2{
+    background:url("./h2.webp") center/cover;
+  }
+  
+  /* DARK OVERLAY */
+  .itfx-card::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,0.6);
+    z-index:1;
+  }
+  
+  /* NEON BORDER */
+  .itfx-card::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    border-radius:inherit;
+    padding:1px;
+    background:linear-gradient(120deg,#d2ff28,transparent,#d2ff28);
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite:xor;
+            mask-composite:exclude;
+    opacity:0;
+    transition:0.4s;
+  }
+  
+  /* GLOW ON HOVER */
+  .itfx-card:hover::before{
+    opacity:1;
+    animation:itfx-border 3s linear infinite;
+  }
+  
+  @keyframes itfx-border{
+    from{background-position:0 0;}
+    to{background-position:400% 0;}
+  }
+  
+  /* CONTENT */
+  .itfx-content{
+    position:relative;
+    z-index:2;
+  }
+  
+  .itfx-content h3{
+    font-size:24px;
+    margin-bottom:15px;
+    font-size: 32px;
+  }
+  
+  .itfx-content p{
+    color:#ccc;
+    margin-bottom:20px;
+    font-size: 28px;
+  }
+  
+  /* BUTTON */
+  .itfx-btn{
+    padding:12px 20px;
+    border-radius:50px;
+    background:#d2ff28;
+    color:#000;
+    text-decoration:none;
+    transition:0.3s;
+    font-size: 24px;
+  }
+  
+  .itfx-btn:hover{
+    box-shadow:0 0 15px #d2ff28;
+  }
+  
+  /* CENTER */
+  .itfx-center{
+    text-align:center;
+  }
+  
+  /* SHAPE */
+  .itfx-shape{
+    position:absolute;
+    width:180px;
+    height:180px;
+    background:radial-gradient(#d2ff28,transparent);
+    top:-40px;
+    right:-40px;
+    opacity:0.25;
+  }
+  
+  /* CLIENTS */
+  .itfx-clients{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+  }
+  
+  .itfx-avatars{
+    display:flex;
+  }
+  
+  .itfx-avatars img{
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    border:2px solid #fff;
+    margin-left:-10px;
+  }
+  
+  .itfx-avatars span{
+    width:42px;
+    height:42px;
+    background:#d2ff28;
+    color:#000;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:50%;
+    margin-left:-10px;
+  }
+  
+  /* HOVER ZOOM */
+  .itfx-card:hover{
+    transform:scale(1.06) translateY(-10px);
+    box-shadow:0 0 35px rgba(210,255,40,0.25);
+  }
+  
+  /* DIFFERENT DIRECTION ANIMATION */
+  .itfx-reveal-left{
+    opacity:0;
+    transform:translateX(-80px);
+    transition:0.8s ease;
+  }
+  .itfx-reveal-right{
+    opacity:0;
+    transform:translateX(80px);
+    transition:0.8s ease;
+  }
+  .itfx-reveal-bottom{
+    opacity:0;
+    transform:translateY(80px);
+    transition:0.8s ease;
+  }
+  
+  .itfx-active{
+    opacity:1 !important;
+    transform:translate(0,0) !important;
+  }
+  
+  /* RESPONSIVE */
+  @media(max-width:992px){
+    .itfx-grid{
+      grid-template-columns:1fr 1fr;
+    }
+  }
+  
+  @media(max-width:768px){
+    .itfx-grid{
+      grid-template-columns:1fr;
+    }
+  
+    .itfx-card{
+      padding:35px;
+    }
+  }
+  </style>
+  
+  <script>
+  
+    (function(){
+    
+      const section = document.getElementById("itfx-section");
+      if(!section) return;
+    
+      const items = section.querySelectorAll(
+        ".itfx-reveal-left, .itfx-reveal-right, .itfx-reveal-bottom"
+      );
+    
+      function reveal(){
+        items.forEach(el=>{
+          const top = el.getBoundingClientRect().top;
+          if(top < window.innerHeight - 80){
+            el.classList.add("itfx-active");
+          }
+        });
+      }
+    
+      window.addEventListener("scroll", reveal);
+      window.addEventListener("load", reveal);
+    
+      /* COUNTER */
+      section.querySelectorAll(".itfx-count").forEach(counter=>{
+        let started = false;
+    
+        function run(){
+          if(started) return;
+    
+          let rect = counter.getBoundingClientRect();
+          if(rect.top < window.innerHeight){
+            started = true;
+    
+            let target = +counter.dataset.target;
+            let count = 0;
+    
+            let update = ()=>{
+              let inc = target / 40;
+              count += inc;
+    
+              if(count < target){
+                counter.innerText = Math.ceil(count);
+                requestAnimationFrame(update);
+              } else{
+                counter.innerText = target + "+";
+              }
+            };
+    
+            update();
+          }
+        }
+    
+        window.addEventListener("scroll", run);
+        run();
+      });
+    
+    })();
+    
+    </script>
+  
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<section class="itx-section">
+
+<div class="itx-container">
+
+  <!-- 🔥 CYLINDER HEADING -->
+  <div class="itx-heading-btn">OUR IT PRICING</div>
+
+  <!-- HEADER -->
+  <div class="itx-header">
+    <h2>Smart IT Solutions for Growing Businesses</h2>
+
+    <div class="itx-toggle">
+      <span>Monthly</span>
+      <label>
+        <input type="checkbox" id="itx-toggle">
+        <span class="itx-switch"></span>
+      </label>
+      <span>Yearly</span>
+    </div>
+  </div>
+
+  <!-- PRICING -->
+  <div class="itx-pricing">
+
+    <!-- CARD -->
+    <div class="itx-card">
+      <i class="fas fa-server itx-icon"></i>
+      <h3>Basic</h3>
+      <div class="itx-price">$<span class="price" data-month="99" data-year="199">99</span></div>
+
+      <ul>
+        <li><i class="fas fa-check"></i> IT Support</li>
+        <li><i class="fas fa-check"></i> 50GB Storage</li>
+        <li><i class="fas fa-check"></i> Security Updates</li>
+        <li><i class="fas fa-check"></i> Email Support</li>
+        <li><i class="fas fa-check"></i> Weekly Backup</li>
+      </ul>
+    </div>
+
+    <div class="itx-card active">
+      <i class="fas fa-cloud itx-icon"></i>
+      <h3>Standard</h3>
+      <div class="itx-price">$<span class="price" data-month="249" data-year="499">249</span></div>
+
+      <ul>
+        <li><i class="fas fa-check"></i> Cloud Hosting</li>
+        <li><i class="fas fa-check"></i> Data Backup</li>
+        <li><i class="fas fa-check"></i> Security Monitoring</li>
+        <li><i class="fas fa-check"></i> API Integration</li>
+        <li><i class="fas fa-check"></i> 24/7 Support</li>
+      </ul>
+    </div>
+
+    <div class="itx-card">
+      <i class="fas fa-shield-alt itx-icon"></i>
+      <h3>Premium</h3>
+      <div class="itx-price">$<span class="price" data-month="499" data-year="899">499</span></div>
+
+      <ul>
+        <li><i class="fas fa-check"></i> Full IT Solutions</li>
+        <li><i class="fas fa-check"></i> Cybersecurity</li>
+        <li><i class="fas fa-check"></i> AI Monitoring</li>
+        <li><i class="fas fa-check"></i> Unlimited Storage</li>
+        <li><i class="fas fa-check"></i> Dedicated Manager</li>
+      </ul>
+    </div>
+
+  </div><br><br>
+
+  <!-- 🔥 SERVICES HEADING -->
+  <div class="itx-heading-btn">HOW WE EMPOWER BUSINESS</div>
+
+  <!-- SERVICES -->
+  <div class="itx-services">
+
+    <div class="itx-service" style="background-image:url('./cloud1.webp');">
+      <div class="itx-overlay">
+        <i class="fas fa-cloud-upload-alt"></i>
+        <h3>Cloud Migration</h3>
+        <p>Boost scalability and reduce costs.</p>
+      </div>
+    </div>
+
+    <div class="itx-service" style="background-image:url('./cybersecurity.webp');">
+      <div class="itx-overlay">
+        <i class="fas fa-mobile-alt"></i>
+        <h3>App Development</h3>
+        <p>Modern mobile apps for your business.</p>
+      </div>
+    </div>
+
+    <div class="itx-service" style="background-image:url('./h1.webp');">
+      <div class="itx-overlay">
+        <i class="fas fa-database"></i>
+        <h3>ERP Systems</h3>
+        <p>Manage operations efficiently.</p>
+      </div>
+    </div>
+
+    <div class="itx-service" style="background-image:url('./tech1.webp');">
+      <div class="itx-overlay">
+        <i class="fas fa-chart-line"></i>
+        <h3>Data Analytics</h3>
+        <p>Make smarter business decisions.</p>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+</section>
+
+<style>
+  .itx-section{
+  background:#050807;
+  color:#fff;
+  padding:100px 6%;
+  font-family:sans-serif;
+}
+
+/* CYLINDER HEADING */
+.itx-heading-btn{
+  display:inline-block;
+  padding:12px 30px;
+  border-radius:50px;
+  background:#0b0f0d;
+  border:1px solid rgba(255,255,255,0.1);
+  margin-bottom:30px;
+  box-shadow:0 0 15px #d2ff28;
+  font-size: 23px;
+}
+
+/* HEADER */
+.itx-header{
+  display:flex;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  font-size: 23px;
+}
+
+/* TOGGLE */
+.itx-switch{
+  width:50px;
+  height:25px;
+  background:#222;
+  border-radius:20px;
+  display:inline-block;
+  position:relative;
+  
+}
+
+.itx-switch::before{
+  content:"";
+  width:20px;
+  height:20px;
+  background:#d2ff28;
+  position:absolute;
+  top:2px;
+  left:3px;
+  border-radius:50%;
+  transition:0.3s;
+}
+
+#itx-toggle:checked + .itx-switch::before{
+  transform:translateX(25px);
+}
+
+/* PRICING */
+.itx-pricing{
+  display:flex;
+  gap:25px;
+  flex-wrap:wrap;
+  margin-top:40px;
+}
+
+/* CARD */
+.itx-card{
+  flex:1;
+  min-width:250px;
+  padding:30px;
+  border-radius:60px;
+  background:rgba(255,255,255,0.05);
+  backdrop-filter:blur(10px);
+  transition:0.5s;
+  cursor:pointer;
+  gap: 1.5px;
+  font-size: 28px;
+}
+
+/* HOVER */
+.itx-card:hover{
+  animation:zoomInOut 0.6s ease;
+  box-shadow:0 0 40px #d2ff28;
+}
+
+/* ZOOM IN OUT */
+@keyframes zoomInOut{
+  0%{transform:scale(1)}
+  50%{transform:scale(1.1)}
+  100%{transform:scale(1.05)}
+}
+
+/* ICON */
+.itx-icon{
+  font-size:38px;
+  color:#d2ff28;
+}
+
+/* SERVICES */
+.itx-services{
+  margin-top:60px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:20px;
+}
+
+/* SERVICE CARD */
+.itx-service{
+  height:250px;
+  background-size:cover;
+  background-position:center;
+  border-radius:40px;
+  overflow:hidden;
+  transition:0.5s;
+  font-size: 23px;
+}
+
+/* OVERLAY */
+.itx-overlay{
+  background:rgba(0,0,0,0.6);
+  height:100%;
+  padding:20px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  text-align:center;
+}
+
+/* HOVER */
+.itx-service:hover{
+  animation:zoomInOut 0.6s ease;
+  box-shadow:0 0 30px #d2ff28;
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .itx-header{
+    flex-direction:column;
+    gap:15px;
+  }
+}
+  </style>
+
+<script>
+  document.getElementById("itx-toggle").addEventListener("change",function(){
+    document.querySelectorAll(".price").forEach(el=>{
+      el.textContent = this.checked ? el.dataset.year : el.dataset.month;
+    });
+  });
+  </script>
+
+
+
+  <!-- SWIPER -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+
+<!-- FONT AWESOME -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<section class="itstx-section">
+
+<div class="itstx-heading">
+  <div class="itstx-pill">SUCCESS STORIES</div>
+  <h2>Building Success with Client Feedback</h2>
+</div>
+
+<div class="itstx-slider swiper">
+  <div class="swiper-wrapper">
+
+    <!-- CARD -->
+    <div class="swiper-slide">
+      <div class="itstx-card">
+        <div class="itstx-thumb">
+          <img src="./im2.webp"/>
+          <a href="./IT.mp4" class="itstx-play">
+            <i class="fas fa-play"></i>
+          </a>
+        </div>
+        <div class="itstx-content">
+          <div class="itstx-stars">★★★★★</div>
+          <p>Excellent IT solutions transformed our workflow.</p>
+          <h4>Mevon Lane</h4>
+          <span>Co-Founder</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="swiper-slide">
+      <div class="itstx-card">
+        <div class="itstx-thumb">
+          <img src="./ima.webp"/>
+          <a href="./IT.mp4" class="itstx-play">
+            <i class="fas fa-play"></i>
+          </a>
+        </div>
+        <div class="itstx-content">
+          <div class="itstx-stars">★★★★★</div>
+          <p>Boosted efficiency and reduced costs drastically.</p>
+          <h4>John Carter</h4>
+          <span>CEO</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="swiper-slide">
+      <div class="itstx-card">
+        <div class="itstx-thumb">
+          <img src="./tech1.webp"/>
+          <a href="./IT.mp4" class="itstx-play">
+            <i class="fas fa-play"></i>
+          </a>
+        </div>
+        <div class="itstx-content">
+          <div class="itstx-stars">★★★★★</div>
+          <p>Cloud integration simplified operations.</p>
+          <h4>Sarah Lee</h4>
+          <span>Manager</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</section>
+
+<style>
+  .itstx-section{
+  background:#050807;
+  padding:100px 5%;
+  color:#fff;
+  font-family:sans-serif;
+  overflow:hidden;
+}
+
+/* HEADING */
+.itstx-heading{
+  text-align:center;
+  margin-bottom:50px;
+  font-size: 23px;
+}
+
+.itstx-pill{
+  display:inline-block;
+  padding:10px 25px;
+  border-radius:50px;
+  background:#0b0f0d;
+  box-shadow:0 0 15px #d2ff28;
+  margin-bottom:10px;
+}
+
+/* CARD */
+.itstx-card{
+  background:rgba(255,255,255,0.05);
+  border-radius:30px;
+  overflow:hidden;
+  backdrop-filter:blur(10px);
+  transition:0.4s;
+  font-size: 28px;
+}
+
+/* HOVER */
+.itstx-card:hover{
+  transform:scale(1.06);
+  box-shadow:0 0 30px #d2ff28;
+}
+
+/* IMAGE */
+.itstx-thumb{
+  position:relative;
+}
+
+.itstx-thumb img{
+  width:100%;
+  height:250px;
+  object-fit:cover;
+  transition:0.5s;
+}
+
+.itstx-card:hover img{
+  transform:scale(1.12);
+}
+
+/* PLAY */
+.itstx-play{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  background:#d2ff28;
+  color:#000;
+  padding:15px;
+  border-radius:50%;
+}
+
+/* CONTENT */
+.itstx-content{
+  padding:20px;
+  text-align:center;
+}
+
+.itstx-stars{
+  color:#d2ff28;
+  margin-bottom:10px;
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .itstx-thumb img{
+    height:200px;
+  }
+}
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<script>
+new Swiper(".itstx-slider", {
+  loop: true,
+  speed: 4000, // smooth continuous speed
+  spaceBetween: 20,
+  allowTouchMove: true,
+
+  autoplay: {
+    delay: 0, // important for continuous scroll
+    disableOnInteraction: false
+  },
+
+  breakpoints: {
+    0: { slidesPerView: 1 },
+    600: { slidesPerView: 1.5 },
+    768: { slidesPerView: 2 },
+    1024: { slidesPerView: 3 }
+  }
+});
+
+/* VIDEO POPUP */
+document.querySelectorAll(".itstx-play").forEach(btn=>{
+  btn.addEventListener("click",function(e){
+    e.preventDefault();
+    window.open(this.href,"_blank");
+  });
+});
+</script>
+  
+
+<!-- ================= FOOTER ================= -->
+<footer class="bio-footer">
+
+    <div class="footer-container">
+  
+      <!-- LOGO + ABOUT -->
+  <div class="footer-col">
+    <img src="./logo.webp" class="footer-logo">
+  
+    <p>
+      Advancing biotechnology through innovation and research.
+      Transforming healthcare and life sciences globally.
+    </p>
+  
+    <!-- FOLLOW US -->
+    <h4 class="follow-title">Follow Us</h4>
+  
+    <div class="social-icons">
+      <a href="404.html"><i class="ri-facebook-fill"></i></a>
+      <a href="404.html"><i class="ri-twitter-x-line"></i></a>
+      <a href="404.html"><i class="ri-instagram-line"></i></a>
+      <a href="404.html"><i class="ri-linkedin-fill"></i></a>
+     
+    </div>
+  </div>
+  
+      <!-- QUICK LINKS -->
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+            
+      <li><a href="./index.html">HOME</a></li>
+        <li><a href="./about.html">ABOUT</a></li>
+            <li><a href="./services.html">SERVICES</a></li>
+                <li><a href="./FAQ.html">FAQ</a></li>
+                    <li><a href="./contact.html">CONTACT</a></li>
+        </ul>
+      </div>
+  
+      <!-- LAB SERVICES -->
+      <div class="footer-col">
+        <h4>cyber secrity Services</h4>
+        <ul>
+            <li><a href="404.html">Network Security</a></li>
+            <li><a href="404.html">Threat Detection</a></li>
+            <li><a href="404.html">Managed Security</a></li>
+            <li><a href="404.html">Data Encryption</a></li>
+            <li><a href="404.html">Ransome protection</a></li>
+        </ul>
+      </div>
+  
+      <!-- LOCATION -->
+      <div class="footer-col">
+        <h4>Location</h4>
+        <div class="map">
+          <iframe src="https://www.google.com/maps?q=Salem%20Tamil%20Nadu&output=embed"></iframe>
+        </div>
+      </div>
+  
+      <!-- SUBSCRIBE -->
+      <div class="footer-col">
+        <h4>Research Updates</h4>
+  
+        <div class="subscribe">
+          <input type="email" id="email" placeholder="Enter Email">
+          <button onclick="subscribe()">Subscribe</button>
+        </div>
+  
+        <span id="msg"></span>
+      </div>
+  
+    </div>
+  
+    <!-- BOTTOM -->
+    <div class="footer-bottom">
+      <p>
+        © 2026 BioGen | All Rights Reserved |
+        <a href="404.html">Privacy Policy</a> |
+        <a href="404.html">Terms & Conditions</a>
+      </p>
+    </div>
+  
+  </footer>
+  
+  <style>
+    /* FOLLOW TITLE */
+  .follow-title {
+    margin-top: 15px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: #d2ff28;
+  }
+  
+  /* SOCIAL ICONS */
+  .social-icons {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  
+  /* ICON STYLE */
+  .social-icons a {
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255,255,255,0.05);
+    border-radius: 50%;
+    font-size: 18px;
+    color: #fff;
+    transition: 0.3s ease;
+  }
+  
+  /* HOVER EFFECT (BIO GLOW) */
+  .social-icons a:hover {
+    /* background: #00f7ff; */
+    color: #000;
+    transform: translateY(-5px) scale(1.1);
+    box-shadow: 0 0 15px #d2ff28;
+  }
+  
+  /* MOBILE CENTER ALIGN */
+  @media (max-width: 480px) {
+    .social-icons {
+      justify-content: center;
+    }
+  
+    .follow-title {
+      text-align: center;
+    }
+  }
+    /* PRE FOOTER */
+  .pre-footer {
+    background: #0a0f1a;
+    padding: 40px 20px;
+  }
+  
+  .pre-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .pre-box {
+    flex: 1;
+    min-width: 250px;
+    text-align: center;
+    color: #fff;
+  }
+  
+  .pre-box i {
+    font-size: 30px;
+    color: #d2ff28;
+    margin-bottom: 10px;
+  }
+  
+  /* FOOTER */
+  .bio-footer {
+    background: #05070d;
+    color: #fff;
+    padding: 60px 20px;
+  }
+  
+  .footer-container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 30px;
+  }
+  
+  /* LOGO */
+  .footer-logo {
+    width: 140px;
+    margin-bottom: 10px;
+  }
+  
+  /* TEXT */
+  .footer-col p {
+    font-size: 14px;
+    color: #aaa;
+  }
+  
+  /* LINKS */
+  .footer-col h4 {
+    margin-bottom: 15px;
+    color: #d2ff28;
+  }
+  
+  .footer-col ul {
+    list-style: none;
+  }
+  
+  .footer-col ul li {
+    margin-bottom: 10px;
+  }
+  
+  .footer-col ul li a {
+    color: #aaa;
+    text-decoration: none;
+  }
+  
+  .footer-col ul li a:hover {
+    color: #d2ff28;
+  }
+  
+  /* SOCIAL */
+  .social-icons a {
+    margin-right: 10px;
+    font-size: 20px;
+    color: #fff;
+  }
+  
+  .social-icons a:hover {
+    color: #d2ff28;
+  }
+  
+  /* MAP */
+  .map iframe {
+    width: 100%;
+    height: 180px;
+    border: 0;
+    border-radius: 10px;
+  }
+  
+  /* SUBSCRIBE */
+  .subscribe {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .subscribe input {
+    flex: 1;
+    padding: 10px;
+    border: none;
+  }
+  
+  .subscribe button {
+    padding: 10px;
+    background: #d2ff28;
+    border: none;
+    cursor: pointer;
+  }
+  
+  /* MESSAGE */
+  #msg {
+    display: block;
+    margin-top: 8px;
+    font-size: 13px;
+  }
+  
+  /* BOTTOM */
+  .footer-bottom {
+    text-align: center;
+    margin-top: 40px;
+    border-top: 1px solid #222;
+    padding-top: 15px;
+    font-size: 14px;
+  }
+  
+  .footer-bottom a {
+    color: #d2ff28;
+    text-decoration: none;
+  }
+  
+  /* ================= RESPONSIVE ================= */
+  
+  /* TABLET */
+  @media (max-width: 1024px) {
+    .footer-container {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  
+  /* MOBILE */
+  @media (max-width: 768px) {
+    .footer-container {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  
+    .subscribe {
+      flex-direction: column;
+    }
+  }
+  
+  /* SMALL MOBILE */
+  @media (max-width: 480px) {
+    .footer-container {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+  
+    .social-icons {
+      margin-top: 10px;
+    }
+  }
+    </style>
+  
+  <script>
+    function subscribe() {
+      let email = document.getElementById("email").value;
+      let msg = document.getElementById("msg");
+    
+      let pattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+    
+      if (email === "" || !email.match(pattern)) {
+        msg.style.color = "red";
+        msg.innerText = "Please fill correct mail id";
+        return;
+      }
+    
+      msg.style.color = "lightgreen";
+      msg.innerText = "Subscribed successfully!";
+    
+      setTimeout(() => {
+        window.location.href = "404.html";
+      }, 1200);
+    }
+    </script>
+    </body>
+</html>
