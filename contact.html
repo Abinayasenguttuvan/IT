@@ -75,7 +75,7 @@
     position:absolute;
     bottom:-6px;left:0;
     width:100%;height:2px;
-    background:#d2ff28;
+    background:#d2ff28;;;
     }
     
     /* RIGHT */
@@ -153,7 +153,7 @@
     <div class="nav-links" id="navLinks">
         <a href="./index.html">HOME</a>
         <a href="./about.html">ABOUT</a>
-        <a href="./services.html">SERVICES</a>
+        <a href="./service.html">SERVICES</a>
         <a href="./FAQ.html">FAQ</a>
         <a href="./contact.html">CONTACT</a>
     </div>
@@ -172,7 +172,7 @@
     <div class="mobile-menu" id="mobileMenu">
         <a href="./index.html">HOME</a>
         <a href="./about.html">ABOUT</a>
-        <a href="./service.html">SERVICES</a>
+        <a href="./services.html">SERVICES</a>
         <a href="./FAQ.html">FAQ</a>
         <a href="./contact.html">CONTACT</a>
     <hr>
@@ -213,422 +213,552 @@
     
     
     </body>
-<section class="faqhero-section">
 
-    <!-- OVERLAY -->
-    <div class="faqhero-overlay"></div>
-  
-    <div class="faqhero-container faqhero-reveal">
-  
-      <!-- HEADING -->
-      <h1 class="faqhero-title">FAQ</h1>
-  
-      <!-- SUBTEXT -->
-      <p class="faqhero-sub">Find answers to your questions about our IT services</p>
-  
-      <!-- BREADCRUMB -->
-      <div class="faqhero-breadcrumb">
-        <a href="./index.html">Home</a>
-        <span>→</span>
-        <span class="active">FAQ</span>
+
+
+
+
+
+    <section class="faqhero-section">
+
+      <!-- OVERLAY -->
+      <div class="faqhero-overlay"></div>
+    
+      <div class="faqhero-container faqhero-reveal">
+    
+        <!-- HEADING -->
+        <h1 class="faqhero-title">CONTACT</h1>
+    
+        <!-- SUBTEXT -->
+        <!-- <p class="faqhero-sub">Find answers to your questions about our IT services</p> -->
+    
+        <!-- BREADCRUMB -->
+        <div class="faqhero-breadcrumb">
+          <a href="./index.html">Home</a>
+          <span>→</span>
+          <span class="active">CONTACT</span>
+        </div>
+    
       </div>
+    
+    </section>
   
-    </div>
-  
-  </section>
-
-  <Style>
-    /* SECTION */
-.faqhero-section{
-  position:relative;
-  height:60vh;
-  min-height:400px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  color:#fff;
-  overflow:hidden;
-
-  background:url("./im2.webp") center/cover no-repeat;
-}
-
-/* OVERLAY */
-.faqhero-overlay{
-  position:absolute;
-  width:100%;
-  height:100%;
-  background:linear-gradient(135deg, rgba(0,0,0,0.7), rgba(0,255,150,0.2));
-  backdrop-filter:blur(4px);
-}
-
-/* CONTAINER */
-.faqhero-container{
-  position:relative;
-  z-index:2;
-  padding:20px;
-}
-
-/* TITLE */
-.faqhero-title{
-  font-size:64px;
-  font-weight:700;
-  letter-spacing:2px;
-  margin-bottom:10px;
-  text-shadow:0 0 20px #00ffcc;
-}
-
-/* SUBTEXT */
-.faqhero-sub{
-  font-size:18px;
-  opacity:0.9;
-  margin-bottom:20px;
-}
-
-/* BREADCRUMB */
-.faqhero-breadcrumb{
-  display:inline-flex;
-  gap:10px;
-  padding:10px 25px;
-  border-radius:50px;
-  background:rgba(255,255,255,0.08);
-  backdrop-filter:blur(10px);
-  box-shadow:0 0 15px rgba(0,255,150,0.4);
-}
-
-.faqhero-breadcrumb a{
-  color:#00ffcc;
-  text-decoration:none;
-}
-
-.faqhero-breadcrumb span{
-  opacity:0.8;
-}
-
-.faqhero-breadcrumb .active{
-  color:#fff;
-  font-weight:600;
-}
-
-/* SCROLL ANIMATION */
-.faqhero-reveal{
-  opacity:0;
-  transform:translateY(60px);
-  transition:0.8s ease;
-}
-
-.faqhero-show{
-  opacity:1;
-  transform:translateY(0);
-}
-
-/* RESPONSIVE */
-
-/* TABLET */
-@media(max-width:992px){
-  .faqhero-title{
-    font-size:48px;
-  }
-}
-
-/* MOBILE */
-@media(max-width:600px){
+    <Style>
+      /* SECTION */
   .faqhero-section{
-    height:50vh;
-  }
-
-  .faqhero-title{
-    font-size:36px;
-  }
-
-  .faqhero-sub{
-    font-size:14px;
-  }
-
-  .faqhero-breadcrumb{
-    font-size:13px;
-    padding:8px 18px;
-  }
-}
-  </Style>
-
-<script>
-    const faqHero = document.querySelector(".faqhero-reveal");
-    
-    function revealFAQHero(){
-      const top = faqHero.getBoundingClientRect().top;
-      if(top < window.innerHeight - 50){
-        faqHero.classList.add("faqhero-show");
-      }
-    }
-    
-    window.addEventListener("load", revealFAQHero);
-    window.addEventListener("scroll", revealFAQHero);
-    </script>
-
-
-
-<section class="itfaqx-section">
-
-    <div class="itfaqx-container">
-  
-      <!-- HEADING -->
-      <div class="itfaqx-heading itfaqx-reveal">
-        <div class="itfaqx-pill">FAQ Experience QUESTIONS AND ANSWERS</div>
-        
-      </div>
-  
-      <!-- ACCORDION -->
-      <div class="itfaqx-accordion">
-  
-        <!-- 1 -->
-        <div class="itfaqx-item itfaqx-reveal active">
-          <button class="itfaqx-title">
-            <span><i class="fas fa-server"></i> What services do you offer?</span>
-            <i class="fas fa-plus itfaqx-icon"></i>
-          </button>
-          <div class="itfaqx-content">
-            <p>We provide cloud, AI, cybersecurity and development services.</p>
-          </div>
-        </div>
-  
-        <!-- 2 -->
-        <div class="itfaqx-item itfaqx-reveal">
-          <button class="itfaqx-title">
-            <span><i class="fas fa-chart-line"></i> How do you help businesses?</span>
-            <i class="fas fa-plus itfaqx-icon"></i>
-          </button>
-          <div class="itfaqx-content">
-            <p>We improve efficiency, automate workflows, and scale operations.</p>
-          </div>
-        </div>
-  
-        <!-- 3 -->
-        <div class="itfaqx-item itfaqx-reveal">
-          <button class="itfaqx-title">
-            <span><i class="fas fa-headset"></i> Do you provide support?</span>
-            <i class="fas fa-plus itfaqx-icon"></i>
-          </button>
-          <div class="itfaqx-content">
-            <p>Yes, 24/7 monitoring and full lifecycle support.</p>
-          </div>
-        </div>
-  
-        <!-- 4 -->
-        <div class="itfaqx-item itfaqx-reveal">
-          <button class="itfaqx-title">
-            <span><i class="fas fa-clock"></i> How long does implementation take?</span>
-            <i class="fas fa-plus itfaqx-icon"></i>
-          </button>
-          <div class="itfaqx-content">
-            <p>Project timelines vary from weeks to months depending on complexity.</p>
-          </div>
-        </div>
-  
-        <!-- 5 -->
-        <div class="itfaqx-item itfaqx-reveal">
-          <button class="itfaqx-title">
-            <span><i class="fas fa-shield-alt"></i> Is my data secure?</span>
-            <i class="fas fa-plus itfaqx-icon"></i>
-          </button>
-          <div class="itfaqx-content">
-            <p>We use enterprise-level encryption and security frameworks.</p>
-          </div>
-        </div>
-  
-        <!-- 6 -->
-        <div class="itfaqx-item itfaqx-reveal">
-          <button class="itfaqx-title">
-            <span><i class="fas fa-cloud"></i> Do you offer cloud migration?</span>
-            <i class="fas fa-plus itfaqx-icon"></i>
-          </button>
-          <div class="itfaqx-content">
-            <p>Yes, we provide seamless cloud migration with minimal downtime.</p>
-          </div>
-        </div>
-  
-        <!-- 7 -->
-        <div class="itfaqx-item itfaqx-reveal">
-          <button class="itfaqx-title">
-            <span><i class="fas fa-robot"></i> Do you provide AI solutions?</span>
-            <i class="fas fa-plus itfaqx-icon"></i>
-          </button>
-          <div class="itfaqx-content">
-            <p>We build AI-powered systems for automation, analytics, and insights.</p>
-          </div>
-        </div>
-  
-        
-  
-      </div>
-  
-    </div>
-  
-  </section>
-  
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  
-  <style>
-    .itfaqx-section{
-    background:#050807;
-    padding:100px 6%;
-    color:#fff;
-    font-family:sans-serif;
-    perspective:1000px;
-  }
-  
-  /* HEADING */
-  .itfaqx-heading{
+    position:relative;
+    height:60vh;
+    min-height:400px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
     text-align:center;
-    margin-bottom:50px;
-    font-size: 23px;
+    color:#fff;
+    overflow:hidden;
+  
+    background:url("./im2.webp") center/cover no-repeat;
   }
   
-  .itfaqx-pill{
-    display:inline-block;
-    padding:10px 25px;
-    border-radius:50px;
-    background:rgba(255,255,255,0.05);
-    backdrop-filter:blur(10px);
-    box-shadow:0 0 15px #d2ff28;
+  /* OVERLAY */
+  .faqhero-overlay{
+    position:absolute;
+    width:100%;
+    height:100%;
+    background:linear-gradient(135deg, rgba(0,0,0,0.7), rgba(0,255,150,0.2));
+    backdrop-filter:blur(4px);
   }
   
-  /* ACCORDION */
-  .itfaqx-accordion{
-    max-width:900px;
-    margin:auto;
-  }
-  
-  /* ITEM */
-  .itfaqx-item{
-    margin-bottom:25px;
-    border-radius:40px;
-    background:rgba(255,255,255,0.05);
-    backdrop-filter:blur(15px);
-    transition:0.4s;
-    transform-style:preserve-3d;
-    box-shadow:0 0 10px rgba(0,0,0,0.5);
-  }
-  
-  /* HOVER 3D */
-  .itfaqx-item:hover{
-    transform:rotateX(5deg) rotateY(-5deg) scale(1.05);
-    box-shadow:0 0 30px #d2ff28;
+  /* CONTAINER */
+  .faqhero-container{
+    position:relative;
+    z-index:2;
+    padding:20px;
   }
   
   /* TITLE */
-  .itfaqx-title{
-    width:100%;
-    padding:20px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    background:none;
-    border:none;
+  .faqhero-title{
+    font-size:64px;
+    font-weight:700;
+    letter-spacing:2px;
+    margin-bottom:10px;
+    text-shadow:0 0 20px #00ffcc;
+  }
+  
+  /* SUBTEXT */
+  .faqhero-sub{
+    font-size:18px;
+    opacity:0.9;
+    margin-bottom:20px;
+  }
+  
+  /* BREADCRUMB */
+  .faqhero-breadcrumb{
+    display:inline-flex;
+    gap:10px;
+    padding:10px 25px;
+    border-radius:50px;
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(10px);
+    box-shadow:0 0 15px rgba(0,255,150,0.4);
+  }
+  
+  .faqhero-breadcrumb a{
+    color:#00ffcc;
+    text-decoration:none;
+  }
+  
+  .faqhero-breadcrumb span{
+    opacity:0.8;
+  }
+  
+  .faqhero-breadcrumb .active{
     color:#fff;
-    cursor:pointer;
-    font-size: 23px;
+    font-weight:600;
   }
   
-  /* ICON */
-  .itfaqx-icon{
-    transition:0.3s;
-  }
-  
-  /* CONTENT */
-  .itfaqx-content{
-    max-height:0;
-    overflow:hidden;
-    transition:0.4s;
-    padding:0 20px;
-  }
-  
-  .itfaqx-item.active .itfaqx-content{
-    max-height:200px;
-    padding:15px 20px;
-  }
-  
-  /* ACTIVE */
-  .itfaqx-item.active{
-    box-shadow:0 0 30px #d2ff28;
-  }
-  
-  .itfaqx-item.active .itfaqx-icon{
-    transform:rotate(45deg);
-  }
-  
-  /* SCROLL */
-  .itfaqx-reveal{
+  /* SCROLL ANIMATION */
+  .faqhero-reveal{
     opacity:0;
-    transform:translateY(80px);
-    transition:0.8s;
+    transform:translateY(60px);
+    transition:0.8s ease;
   }
   
-  .itfaqx-show{
+  .faqhero-show{
     opacity:1;
     transform:translateY(0);
   }
   
   /* RESPONSIVE */
-  @media(max-width:768px){
-    .itfaqx-title{
-      font-size:14px;
+  
+  /* TABLET */
+  @media(max-width:992px){
+    .faqhero-title{
+      font-size:48px;
     }
   }
-  </style>
+  
+  /* MOBILE */
+  @media(max-width:600px){
+    .faqhero-section{
+      height:50vh;
+    }
+  
+    .faqhero-title{
+      font-size:36px;
+    }
+  
+    .faqhero-sub{
+      font-size:14px;
+    }
+  
+    .faqhero-breadcrumb{
+      font-size:13px;
+      padding:8px 18px;
+    }
+  }
+    </Style>
   
   <script>
-  
-    /* ACCORDION */
-    document.querySelectorAll(".itfaqx-title").forEach(btn=>{
-      btn.addEventListener("click",()=>{
-        const item = btn.parentElement;
-    
-        document.querySelectorAll(".itfaqx-item").forEach(el=>{
-          if(el !== item) el.classList.remove("active");
-        });
-    
-        item.classList.toggle("active");
-      });
-    });
-    
-    /* SCROLL REVEAL */
-    const items = document.querySelectorAll(".itfaqx-reveal");
-    
-    function reveal(){
-      items.forEach(el=>{
-        const top = el.getBoundingClientRect().top;
-        if(top < window.innerHeight - 80){
-          el.classList.add("itfaqx-show");
+      const faqHero = document.querySelector(".faqhero-reveal");
+      
+      function revealFAQHero(){
+        const top = faqHero.getBoundingClientRect().top;
+        if(top < window.innerHeight - 50){
+          faqHero.classList.add("faqhero-show");
         }
-      });
-    }
-    
-    window.addEventListener("scroll", reveal);
-    window.addEventListener("load", reveal);
-    
-    /* 3D MOUSE TILT */
-    document.querySelectorAll(".itfaqx-item").forEach(card=>{
-      card.addEventListener("mousemove",(e)=>{
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-    
-        const rotateX = (y / rect.height - 0.5) * 10;
-        const rotateY = (x / rect.width - 0.5) * -10;
-    
-        card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
-      });
-    
-      card.addEventListener("mouseleave",()=>{
-        card.style.transform = "rotateX(0) rotateY(0) scale(1)";
-      });
-    });
-    
-    </script>
-    <!-- ================= FOOTER ================= -->
+      }
+      
+      window.addEventListener("load", revealFAQHero);
+      window.addEventListener("scroll", revealFAQHero);
+      </script>
+
+
+<!-- CONTACT SECTION -->
+<section class="contact-section">
+  <div class="contact-container">
+
+    <!-- Header -->
+    <div class="contact-header">
+      <h2>Contact Us</h2>
+      
+    </div>
+
+    <!-- Contact Info -->
+    <div class="contact-info-grid">
+
+      <!-- Email -->
+      <div class="contact-card">
+        <div class="contact-icon">
+          <i class="fa-regular fa-envelope"></i>
+        </div>
+        <h4>Email Address</h4>
+        <p>hello@yourcompany.com</p>
+        <p>support@yourcompany.com</p>
+      </div>
+
+      <!-- Phone -->
+      <div class="contact-card">
+        <div class="contact-icon">
+          <i class="fa-solid fa-phone"></i>
+        </div>
+        <h4>Phone Number</h4>
+        <p>+91 98765 43210</p>
+        <p>+91 91234 56789</p>
+      </div>
+
+      <!-- Location -->
+      <div class="contact-card">
+        <div class="contact-icon">
+          <i class="fa-solid fa-location-dot"></i>
+        </div>
+        <h4>Office Location</h4>
+        <p>salem, Tamil Nadu</p>
+        <p>India</p>
+      </div>
+
+      <!-- Work Time -->
+      <div class="contact-card">
+        <div class="contact-icon">
+          <i class="fa-regular fa-clock"></i>
+        </div>
+        <h4>Working Hours</h4>
+        <p>Mon – Fri: 9:00 AM – 6:00 PM</p>
+        <p>Sat: 9:00 AM – 1:00 PM</p>
+        <p>Sun: 9:00 AM – 1:00 PM</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT FORM SECTION -->
+<section class="contact-form-section">
+  <div class="contact-wrapper">
+
+    <!-- LEFT CONTENT -->
+    <div class="contact-left">
+      
+      <span class="contact-tag">CONTACT</span>
+      <h2>Get In Touch With Us</h2>
+      
+<form class="contact-form" id="contactForm" novalidate>
+
+  <div class="form-row">
+    <div class="field">
+      <input type="text" id="name" placeholder="Name">
+      <small class="error"></small>
+    </div>
+
+    <div class="field">
+      <input type="email" id="email" placeholder="Email">
+      <small class="error"></small>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="field">
+      <input type="text" id="phone" placeholder="Phone Number">
+      <small class="error"></small>
+    </div>
+
+    <div class="field">
+      <input type="text" id="subject" placeholder="Subject">
+      <small class="error"></small>
+    </div>
+  </div>
+
+  <div class="field">
+    <textarea id="message" placeholder="Message"></textarea>
+    <small class="error"></small>
+  </div>
+
+  <button type="submit">Send Message</button>
+</form>
+    </div>
+
+    <!-- RIGHT IMAGE -->
+    <div class="contact-right">
+      <div class="image-box">
+        <img src="./h2.webp" alt="Contact Team">
+      </div>
+    </div>
+
+  </div>
+
+  <div class="map-box">
+  <iframe
+    src="https://www.google.com/maps?q=Salem%20Tamil%20Nadu&output=embed"
+    loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade">
+  </iframe>
+
+  
+</div>
+</section>
+<style>
+  
+/* HERO SECTION */
+
+.contact-hero{
+ margin-top: 70px;;
+width:100%;
+height:65vh;
+background-size:cover;
+background-position:center;
+position:relative;
+display:flex;
+align-items:center;
+justify-content:center;
+transition:1s;
+}
+
+.hero-overlay{
+width:100%;
+height:100%;
+/* background:rgba(0,0,0,0.6); */
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+text-align:center;
+color: orangered;
+padding:20px;
+}
+
+.hero-overlay h1{
+font-size:48px;
+margin-bottom:10px;
+}
+
+.hero-overlay p{
+font-size:18px;
+}
+
+/* CONTACT SECTION */
+
+.contact-section{
+padding:60px 20px;
+}
+
+.contact-header{
+text-align:center;
+margin-bottom:40px;
+}
+
+.contact-header h2{
+font-size:32px;
+margin-bottom:10px;
+}
+
+.contact-info-grid{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:20px;
+}
+
+.contact-card{
+background:#f5f5f5;
+padding:20px;
+text-align:center;
+border-radius:10px;
+}
+
+.contact-icon{
+font-size:30px;
+margin-bottom:10px;
+}
+
+/* CONTACT FORM */
+
+.contact-form-section{
+padding:60px 20px;
+}
+
+.contact-wrapper{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:40px;
+flex-wrap:wrap;
+}
+
+.contact-left{
+flex:1;
+position:relative;
+}
+
+.contact-left h2{
+margin:10px 0;
+}
+
+.contact-right{
+flex:1;
+}
+
+.contact-right img{
+width:100%;
+border-radius:10px;
+}
+
+/* FLOATING IMAGE */
+
+.floating-img{
+width:150px;
+position:absolute;
+top:50px;
+right:-50px;
+animation:float 3s ease-in-out infinite;
+}
+
+@keyframes float{
+0%,100%{transform:translateY(0);}
+50%{transform:translateY(-20px);}
+}
+
+/* FORM */
+
+.form-row{
+display:flex;
+gap:20px;
+flex-wrap:wrap;
+}
+
+.field{
+flex:1;
+display:flex;
+flex-direction:column;
+}
+
+.contact-form input,
+.contact-form textarea{
+padding:10px;
+margin:10px 0;
+border:1px solid #ccc;
+}
+
+.contact-form button{
+padding:12px;
+background:#000;
+color:#fff;
+border:none;
+cursor:pointer;
+}
+
+/* MAP */
+
+.map-box iframe{
+width:100%;
+height:300px;
+border:0;
+margin-top:30px;
+}
+
+/* TABLET VIEW */
+
+@media(max-width:1024px){
+
+.contact-info-grid{
+grid-template-columns:repeat(2,1fr);
+}
+
+.contact-wrapper{
+flex-direction:column;
+}
+
+.floating-img{
+right:0;
+}
+
+}
+
+/* MOBILE VIEW */
+
+@media(max-width:768px){
+
+.hero-overlay h1{
+font-size:28px;
+}
+
+.hero-overlay p{
+font-size:14px;
+}
+
+.contact-info-grid{
+grid-template-columns:1fr;
+}
+
+.form-row{
+flex-direction:column;
+}
+
+.floating-img{
+position:static;
+margin:20px auto;
+display:block;
+}
+
+.contact-hero{
+height:40vh;
+}
+
+}
+
+/* SMALL MOBILE */
+
+@media(max-width:480px){
+
+.hero-overlay h1{
+font-size:22px;
+}
+
+.hero-overlay p{
+font-size:12px;
+}
+
+}
+</style>
+
+<script>
+  const hero=document.querySelector(".contact-hero");
+
+const images=[
+"./f1.webp",
+"./f2.webp",
+"./f3.webp"
+];
+
+let i=0;
+
+setInterval(()=>{
+hero.style.backgroundImage=`url(${images[i]})`;
+i=(i+1)%images.length;
+},3000);
+
+document.getElementById("contactForm").addEventListener("submit",function(e){
+
+e.preventDefault();
+
+let name=document.getElementById("name").value.trim();
+let email=document.getElementById("email").value.trim();
+let phone=document.getElementById("phone").value.trim();
+let subject=document.getElementById("subject").value.trim();
+let message=document.getElementById("message").value.trim();
+
+if(name==="" || email==="" || phone==="" || subject==="" || message===""){
+
+alert("Please fill all details");
+
+}else{
+
+window.location.href="404.html";
+
+}
+
+});
+</script>
+
+
+<!-- ================= FOOTER ================= -->
 <footer class="bio-footer">
 
     <div class="footer-container">
@@ -947,5 +1077,3 @@
       }, 1200);
     }
     </script>
-</body>
-</html>
