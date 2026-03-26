@@ -15,224 +15,6 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 
 
-<style>
-/* RESET */
-* {
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:'Segoe UI', sans-serif;
-}
-
-body {
-  background:#0b0f1a;
-}
-
-/* PRELOADER */
-#preloader {
-  position:fixed;
-  width:100%;
-  height:100vh;
-  background: radial-gradient(circle at center, #0f172a, #020617);
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  flex-direction:column;
-  overflow:hidden;
-  z-index:9999;
-}
-
-/* PARTICLES */
-.particles span {
-  position:absolute;
-  display:block;
-  width:6px;
-  height:6px;
-  background:#d2ff28;
-  opacity:0.3;
-  border-radius:50%;
-  animation: float 10s linear infinite;
-}
-
-@keyframes float {
-  0% { transform: translateY(100vh) scale(0); }
-  100% { transform: translateY(-10vh) scale(1); }
-}
-
-/* GLASS 3D CUBE */
-.scene {
-  width:120px;
-  height:120px;
-  perspective:800px;
-}
-
-.cube {
-  width:100%;
-  height:100%;
-  position:relative;
-  transform-style:preserve-3d;
-  animation: rotate 6s infinite linear;
-}
-
-.face {
-  position:absolute;
-  width:120px;
-  height:120px;
-  backdrop-filter: blur(15px);
-  background: rgba(255,255,255,0.08);
-  border:1px solid rgba(255,255,255,0.2);
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  color:#d2ff28;
-  font-weight:bold;
-  font-size:20px;
-  box-shadow:0 0 20px rgba(0,229,255,0.3);
-}
-
-/* POSITION FACES */
-.front  { transform: translateZ(60px); }
-.back   { transform: rotateY(180deg) translateZ(60px); }
-.left   { transform: rotateY(-90deg) translateZ(60px); }
-.right  { transform: rotateY(90deg) translateZ(60px); }
-.top    { transform: rotateX(90deg) translateZ(60px); }
-.bottom { transform: rotateX(-90deg) translateZ(60px); }
-
-/* ROTATION */
-@keyframes rotate {
-  0% { transform: rotateX(0) rotateY(0); }
-  100% { transform: rotateX(360deg) rotateY(360deg); }
-}
-
-/* LOGO TEXT */
-.logo-text {
-  margin-top:30px;
-  font-size:1.6rem;
-  color:#d2ff28;
-  letter-spacing:2px;
-  text-shadow:0 0 15px #d2ff28;
-  animation: glow 2s infinite alternate;
-}
-
-/* NEON GLOW */
-@keyframes glow {
-  from { text-shadow:0 0 5px #d2ff28; }
-  to { text-shadow:0 0 25px #d2ff28; }
-}
-
-/* PROGRESS */
-.progress-container {
-  margin-top:20px;
-  width:200px;
-  text-align:center;
-}
-
-.progress-bar {
-  width:100%;
-  height:6px;
-  background:#1e293b;
-  border-radius:10px;
-  overflow:hidden;
-  margin-top:10px;
-}
-
-.progress-fill {
-  height:100%;
-  width:0%;
-  background:linear-gradient(90deg,#d2ff28,#007bff);
-  box-shadow:0 0 10px #d2ff28;
-  transition:width 0.3s;
-}
-
-.progress-text {
-  color:#d2ff28;
-  margin-top:8px;
-  font-size:14px;
-}
-
-/* FADE OUT */
-.fade-out {
-  opacity:0;
-  visibility:hidden;
-  transition:0.8s ease;
-}
-
-/* RESPONSIVE */
-@media(max-width:768px){
-  .scene { width:90px; height:90px; }
-  .face { width:90px; height:90px; font-size:16px; }
-  .logo-text { font-size:1.3rem; }
-  .progress-container { width:150px; }
-}
-
-@media(max-width:480px){
-  .scene { width:70px; height:70px; }
-  .face { width:70px; height:70px; font-size:12px; }
-  .logo-text { font-size:1rem; }
-  .progress-container { width:120px; }
-}
-
-</style>
-</head>
-
-<body>
-
-<div id="preloader">
-
-  <!-- PARTICLES -->
-  <div class="particles">
-    <script>
-      for(let i=0;i<40;i++){
-        document.write('<span style="left:'+Math.random()*100+'%; animation-delay:'+Math.random()*10+'s"></span>');
-      }
-    </script>
-  </div>
-
-  <!-- 3D CUBE -->
-  <!-- <div class="scene">
-    <div class="cube">
-      <div class="face front">STK</div>
-      <div class="face back">STK</div>
-      <div class="face left">STK</div>
-      <div class="face right">STK</div>
-      <div class="face top">STK</div>
-      <div class="face bottom">STK</div>
-    </div>
-  </div> -->
-
-  <!-- TEXT -->
-  <div class="logo-text">STACKLY</div>
-
-  <!-- PROGRESS -->
-  <div class="progress-container">
-    <div class="progress-bar">
-      <div class="progress-fill" id="progressFill"></div>
-    </div>
-    <div class="progress-text" id="progressText">0%</div>
-  </div>
-
-</div>
-
-
-
-<script>
-let progress = 0;
-let interval = setInterval(() => {
-  progress++;
-  document.getElementById("progressFill").style.width = progress + "%";
-  document.getElementById("progressText").innerText = progress + "%";
-
-  if(progress >= 100){
-    clearInterval(interval);
-
-    setTimeout(()=>{
-      document.getElementById("preloader").classList.add("fade-out");
-      document.getElementById("content").style.display="block";
-    },500);
-  }
-}, 25);
-</script>
-
 
 <style>
     *{margin:0;padding:0;box-sizing:border-box;font-family:"Segoe UI",sans-serif;}
@@ -594,7 +376,7 @@ body{background:#000;color:#fff;overflow-x:hidden;}
   border:1px solid rgba(255,255,255,0.1);
   padding:15px;
   border-radius:15px;
-  font-size:23px;
+  
 }
 
 .trust{
@@ -916,7 +698,7 @@ function go404(e,btn){
 }
 
 .about2-text{
-  font-size: 28px;
+  
   color:#bbb;
   margin:20px 0 25px;
   line-height:1.7;
@@ -924,14 +706,14 @@ function go404(e,btn){
 
 /* FEATURES */
 .about2-features{
-  font-size: 28px;
+  
   display:flex;
   gap:20px;
   margin-bottom:30px;
 }
 
 .feature{
-  font-size: 28px;
+  
   display:flex;
   align-items:center;
   gap:10px;
@@ -1263,7 +1045,7 @@ function go404(e,btn){
 .itfx-content p{
   color:#ccc;
   margin-bottom:20px;
-  font-size: 28px;
+  
 }
 
 /* BUTTON */
@@ -1274,7 +1056,7 @@ function go404(e,btn){
   color:#000;
   text-decoration:none;
   transition:0.3s;
-  font-size: 24px;
+  
 }
 
 .itfx-btn:hover{
@@ -1593,7 +1375,7 @@ function go404(e,btn){
 .itsa-text{
   color:#ccc;
   margin-bottom:25px;
-  font-size: 28px;
+  
 }
 
 /* FEATURES */
@@ -1602,7 +1384,7 @@ function go404(e,btn){
   gap:20px;
   margin-bottom:20px;
   flex-wrap:wrap;
-  font-size: 28px;
+ 
 }
 
 .itsa-feature{
@@ -1636,7 +1418,7 @@ function go404(e,btn){
 .itsa-list li{
   margin-bottom:10px;
   color:#ccc;
-  font-size: 23px;
+  
 }
 
 /* BUTTON */
@@ -1648,7 +1430,7 @@ function go404(e,btn){
   border-radius:50px;
   text-decoration:none;
   transition:0.3s;
-  font-size: 23px;
+  
 }
 
 .itsa-btn:hover{
@@ -1670,7 +1452,7 @@ function go404(e,btn){
 /* RESPONSIVE */
 @media(max-width:992px){
   .itsa-title{
-    font-size:28px;
+    
   }
 }
 
@@ -1810,14 +1592,14 @@ function go404(e,btn){
   padding:110px 8%;
   background:#050807;
   color:#fff;
-  font-size: 23px;
+  
 }
 
 /* HEADER */
 .itsx-header{
   text-align:center;
   margin-bottom:70px;
-  font-size: 23px;
+  
 }
 
 .itsx-pill{
@@ -1842,7 +1624,7 @@ function go404(e,btn){
   grid-template-columns:1fr 1.3fr 1fr;
   align-items:center;
   gap:50px;
-  font-size: 28px;
+  
 }
 
 /* LEFT TABS */
@@ -1864,7 +1646,7 @@ function go404(e,btn){
   gap:12px;
   align-items:center;
   transition:0.3s;
-  font-size: 28px;
+  
 }
 
 .itsx-tab i{
@@ -2098,7 +1880,7 @@ function go404(e,btn){
   align-items:center;
   flex-wrap:wrap;
   gap:20px;
-  font-size: 23px;
+  
 }
 
 .itcx-header h2{
@@ -2135,7 +1917,7 @@ function go404(e,btn){
   align-items:center;
   gap:8px;
   transition:0.3s;
-  font-size:28px;
+  
 }
 
 .itcx-tab i{
@@ -2163,7 +1945,7 @@ function go404(e,btn){
   padding:40px;
   border-radius:20px;
   flex-wrap:wrap;
-  font-size: 23px;
+  
 }
 
 /* LEFT */
@@ -2465,7 +2247,7 @@ function go404(e,btn){
   border:1px solid rgba(255,255,255,0.1);
   margin-bottom:30px;
   box-shadow:0 0 15px #d2ff28;
-  font-size: 23px;
+  
 }
 
 /* HEADER */
@@ -2473,7 +2255,7 @@ function go404(e,btn){
   display:flex;
   justify-content:space-between;
   flex-wrap:wrap;
-  font-size: 23px;
+  
 }
 
 /* TOGGLE */
@@ -2522,7 +2304,7 @@ function go404(e,btn){
   transition:0.5s;
   cursor:pointer;
   gap: 1.5px;
-  font-size: 28px;
+  
 }
 
 /* HOVER */
@@ -2560,7 +2342,7 @@ function go404(e,btn){
   border-radius:40px;
   overflow:hidden;
   transition:0.5s;
-  font-size: 23px;
+  
 }
 
 /* OVERLAY */
@@ -2685,7 +2467,7 @@ function go404(e,btn){
 .itstx-heading{
   text-align:center;
   margin-bottom:50px;
-  font-size: 23px;
+  
 }
 
 .itstx-pill{
@@ -2704,7 +2486,7 @@ function go404(e,btn){
   overflow:hidden;
   backdrop-filter:blur(10px);
   transition:0.4s;
-  font-size: 28px;
+  
 }
 
 /* HOVER */
@@ -2888,7 +2670,7 @@ document.querySelectorAll(".itstx-play").forEach(btn=>{
 .itmarq-heading{
   text-align:center;
   margin-bottom:40px;
-  font-size: 23px;
+  
 }
 
 .itmarq-pill{
@@ -2925,7 +2707,7 @@ document.querySelectorAll(".itstx-play").forEach(btn=>{
   backdrop-filter:blur(10px);
   white-space:nowrap;
   transition:0.3s;
-  font-size: 23px;
+  
 }
 
 /* ICON */
@@ -3079,7 +2861,7 @@ document.querySelectorAll(".itstx-play").forEach(btn=>{
 /* HEADING */
 .itwork-heading{
   margin-bottom:40px;
-  font-size: 23px;
+  
 }
 
 .itwork-pill{
@@ -3102,7 +2884,7 @@ document.querySelectorAll(".itstx-play").forEach(btn=>{
   background:rgba(255,255,255,0.05);
   backdrop-filter:blur(10px);
   transition:0.4s;
-  font-size: 23px;
+  
 }
 
 /* NUMBER */
@@ -3116,7 +2898,7 @@ document.querySelectorAll(".itstx-play").forEach(btn=>{
   background:#d2ff28;
   color:#000;
   font-weight:bold;
-  font-size: 23px;
+  
 }
 
 /* HOVER */
@@ -3302,7 +3084,7 @@ document.querySelectorAll(".itstx-play").forEach(btn=>{
 .itfaqx-heading{
   text-align:center;
   margin-bottom:50px;
-  font-size: 23px;
+  
 }
 
 .itfaqx-pill{
@@ -3348,7 +3130,7 @@ document.querySelectorAll(".itstx-play").forEach(btn=>{
   border:none;
   color:#fff;
   cursor:pointer;
-  font-size: 23px;
+  
 }
 
 /* ICON */
@@ -3601,7 +3383,7 @@ document.querySelectorAll(".itstx-play").forEach(btn=>{
 }
 
 .pre-box i {
-  font-size: 30px;
+  /* font-size: 30px; */
   color: #d2ff28;
   margin-bottom: 10px;
 }
