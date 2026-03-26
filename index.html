@@ -15,203 +15,261 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 
 
-
 <style>
-    *{margin:0;padding:0;box-sizing:border-box;font-family:"Segoe UI",sans-serif;}
-    body{height:2000px;background:linear-gradient(120deg,#e0f2fe,#f5f9ff);}
-    
-    
-    /* HEADER */
-    header{
+  *{margin:0;padding:0;box-sizing:border-box;font-family:"Segoe UI",sans-serif;}
+  
+  /* THEME VARIABLES */
+  :root{
+    --bg:#ffffff;
+    --text:#0f172a;
+    --glass:rgba(255,255,255,0.6);
+    --border:rgba(255,255,255,0.3);
+    --accent:#d2ff28;
+  }
+  
+  body.dark{
+    --bg:#020617;
+    --text:#e2e8f0;
+    --glass:rgba(15,23,42,0.7);
+    --border:rgba(255,255,255,0.1);
+  }
+  
+  body{
+    background:var(--bg);
+    color:var(--text);
+    transition:0.3s;
+  }
+  
+  /* HEADER */
+  header{
     position:fixed;
     top:0;left:0;width:100%;
-    background:rgba(255,255,255,0.6);
+    background:var(--glass);
     backdrop-filter:blur(12px);
-    border-bottom:1px solid rgba(255,255,255,0.3);
+    border-bottom:1px solid var(--border);
     box-shadow:0 8px 30px rgba(0,0,0,0.05);
-    transition:0.3s;
     z-index:1000;
-    }
-    
-    /* SHRINK */
-    header.shrink{
+    transition:0.3s;
+  }
+  
+  /* SHRINK */
+  header.shrink{
     padding:5px 0;
     box-shadow:0 4px 15px rgba(0,0,0,0.08);
-    }
-    
-    .navbar{
+  }
+  
+  .navbar{
     display:flex;
     align-items:center;
     justify-content:space-between;
     padding:18px 40px;
     position:relative;
-    }
-    
-    /* LEFT LOGO */
-    .logo img{height:40px;}
-    
-    /* CENTER NAV */
-    .nav-links{
+  }
+  
+  /* LOGO */
+  .logo img{height:40px;}
+  
+  /* NAV */
+  .nav-links{
     position:absolute;
     left:50%;
     transform:translateX(-50%);
     display:flex;
     gap:30px;
-    }
-    
-    .nav-links a{
+  }
+  
+  .nav-links a{
     text-decoration:none;
-    color:#0f172a;
+    color:var(--text);
     font-weight:500;
     position:relative;
-    }
-    
-    /* ACTIVE */
-    .nav-links a.active,
-    .nav-links a:hover{color:#d2ff28;;}
-    
-    .nav-links a.active::after,
-    .nav-links a:hover::after{
+  }
+  
+  .nav-links a:hover,
+  .nav-links a.active{
+    color:var(--accent);
+  }
+  
+  .nav-links a:hover::after,
+  .nav-links a.active::after{
     content:"";
     position:absolute;
-    bottom:-6px;left:0;
-    width:100%;height:2px;
-    background:#d2ff28;
-    }
-    
-    /* RIGHT */
-    .right{display:flex;gap:12px;}
-    
-    .btn{
+    bottom:-6px;
+    left:0;
+    width:100%;
+    height:2px;
+    background:var(--accent);
+  }
+  
+  /* RIGHT */
+  .right{
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  
+  .btn{
     padding:8px 18px;
     border-radius:30px;
     border:none;
     cursor:pointer;
     font-size:14px;
     transition:0.3s;
-    }
-    
-    .login{background:transparent;border:1px solid #d2ff28;color:#d2ff28;}
-    .login:hover{background:#d2ff28;;color:black;}
-    
-    .register{background:#d2ff28;color: black;}
-    .register:hover{background:#d2ff28;}
-    
-    /* MENU */
-    .menu-toggle{display:none;font-size:22px;cursor:pointer;}
-    
-    /* MOBILE MENU */
-    .mobile-menu{
+  }
+  
+  .login{
+    background:transparent;
+    border:1px solid var(--accent);
+    color:var(--accent);
+  }
+  
+  .login:hover{
+    background:var(--accent);
+    color:black;
+  }
+  
+  .register{
+    background:var(--accent);
+    color:black;
+  }
+  
+  /* DARK MODE BUTTON */
+  .theme-toggle{
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    background:var(--accent);
+    color:black;
+    font-size:16px;
+  }
+  
+  /* MENU */
+  .menu-toggle{
+    display:none;
+    font-size:22px;
+    cursor:pointer;
+  }
+  
+  /* MOBILE MENU */
+  .mobile-menu{
     position:fixed;
     top:0;left:-100%;
     width:260px;height:100vh;
-    background:white;
+    background:var(--bg);
     padding:20px;
     transition:0.3s;
-    box-shadow:10px 0 25px rgba(0,0,0,0.1);
     z-index:2000;
-    }
-    .mobile-menu.active{left:0;}
-    .mobile-menu a{display:block;margin:15px 0;text-decoration:none;color:#0f172a;}
-    
-    /* OVERLAY */
-    .overlay{
-    position:fixed;top:0;left:0;width:100%;height:100%;
-    background:rgba(0,0,0,0.4);display:none;z-index:1500;
-    }
-    .overlay.active{display:block;}
-    
-    /* RESPONSIVE */
-    @media(max-width:900px){
+  }
+  
+  .mobile-menu.active{left:0;}
+  
+  .mobile-menu a{
+    display:block;
+    margin:15px 0;
+    text-decoration:none;
+    color:var(--text);
+  }
+  
+  /* OVERLAY */
+  .overlay{
+    position:fixed;
+    top:0;left:0;
+    width:100%;height:100%;
+    background:rgba(0,0,0,0.4);
+    display:none;
+    z-index:1500;
+  }
+  
+  .overlay.active{display:block;}
+  
+  /* RESPONSIVE */
+  @media(max-width:900px){
     .nav-links{display:none;}
     .right{display:none;}
     .menu-toggle{display:block;}
-    }
-    
-    </style>
-    </head>
-    
-    <body>
-    
-      
-    
-    <div class="overlay" id="overlay"></div>
-    
-    <header id="header">
-    
+  }
+  
+  @media(max-width:576px){
+    .navbar{padding:15px;}
+  }
+  </style>
+  
+  <header id="header">
     <div class="navbar">
-    
-    <div class="menu-toggle" onclick="toggleMenu()">
-    <i class="fa fa-bars"></i>
-    </div>
-    
-    <div class="logo">
-      <a href="./index.html">
-    <img src="./logo.webp" alt="Stackly">
-      </a>
-    </div>
-    
-    <div class="nav-links" id="navLinks">
+  
+      <div class="menu-toggle" onclick="toggleMenu()">
+        ☰
+      </div>
+  
+      <div class="logo">
+        <a href="./index.html">
+          <img src="./logo.webp" alt="Stackly">
+        </a>
+      </div>
+  
+      <div class="nav-links">
         <a href="./index.html">HOME</a>
         <a href="./about.html">ABOUT</a>
         <a href="./service.html">SERVICES</a>
         <a href="./FAQ.html">FAQ</a>
         <a href="./contact.html">CONTACT</a>
+      </div>
+  
+      <div class="right">
+        <div class="theme-toggle" onclick="toggleTheme()">🌙</div>
+        <button class="btn login" onclick="location.href='login.html'">Login</button>
+        <button class="btn register" onclick="location.href='register.html'">Register</button>
+      </div>
+  
     </div>
-    
-    
-    <div class="right">
-      <button class="btn login" onclick="location.href='login.html'">Login</button>
-      <button class="btn register" onclick="location.href='register.html'">Register</button>
-    </div>
-    
-    </div>
-    
-    </header>
-    
-    <!-- MOBILE MENU -->
-    <div class="mobile-menu" id="mobileMenu">
-        <a href="./index.html">HOME</a>
-        <a href="./about.html">ABOUT</a>
-        <a href="./service.html">SERVICES</a>
-        <a href="./FAQ.html">FAQ</a>
-        <a href="./contact.html">CONTACT</a>
+  </header>
+  
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="./index.html">HOME</a>
+    <a href="./about.html">ABOUT</a>
+    <a href="./service.html">SERVICE</a>
+    <a href="./FAQ.html">FAQ</a>
+    <a href="./contact.html">CONTACT</a>
     <hr>
     <a href="./login.html">Login</a>
     <a href="./register.html">Register</a>
-    </div>
-    
-    <script>
-    // MENU
-    function toggleMenu(){
-    const menu=document.getElementById("mobileMenu");
-    const overlay=document.getElementById("overlay");
-    menu.classList.toggle("active");
+  </div>
+  
+  <div class="overlay" id="overlay"></div>
+  
+  <script>
+  // MENU
+  function toggleMenu(){
+    mobileMenu.classList.toggle("active");
     overlay.classList.toggle("active");
-    }
-    
-    overlay.onclick=()=>{
-    document.getElementById("mobileMenu").classList.remove("active");
+  }
+  
+  overlay.onclick=()=>{
+    mobileMenu.classList.remove("active");
     overlay.classList.remove("active");
-    };
-    
-    // SHRINK HEADER
-    window.addEventListener("scroll",()=>{
-    const header=document.getElementById("header");
+  };
+  
+  // SHRINK
+  window.addEventListener("scroll",()=>{
     header.classList.toggle("shrink",window.scrollY>50);
-    });
-    
-    // ACTIVE LINK
-    const links=document.querySelectorAll(".nav-links a");
-    links.forEach(link=>{
-    link.addEventListener("click",()=>{
-    links.forEach(l=>l.classList.remove("active"));
-    link.classList.add("active");
-    });
-    });
-    </script>
-    
-    
+  });
+  
+  // DARK MODE
+  function toggleTheme(){
+    document.body.classList.toggle("dark");
+  
+    const icon = document.querySelector(".theme-toggle");
+    if(document.body.classList.contains("dark")){
+      icon.textContent="☀️";
+    }else{
+      icon.textContent="🌙";
+    }
+  }
+  </script>
     
     </body>
 <style>
@@ -424,6 +482,28 @@ body{background:#000;color:#fff;overflow-x:hidden;}
 
 <body>
 
+
+  <!-- PRELOADER -->
+<div id="preloader">
+
+  <!-- PARTICLES -->
+  <div class="particles" id="particles"></div>
+
+  <!-- LOGO -->
+  <div class="loader-box">
+    <img src="./logo.webp" alt="Stackly Logo">
+  </div>
+
+  <div class="loading-text">Stackly IT Services</div>
+  <div class="progress" id="progress">0%</div>
+
+</div>
+
+<!-- MAIN CONTENT -->
+<div id="main-content" style="display:none;">
+  <!-- Your website content -->
+</div>
+
 <section class="hero">
 
 <!-- MULTIPLE VIDEOS -->
@@ -474,6 +554,158 @@ body{background:#000;color:#fff;overflow-x:hidden;}
 </div>
 
 </section>
+<style>
+  /* ================= PRELOADER ================= */
+#preloader{
+  position:fixed;
+  width:100%;
+  height:100%;
+  top:0;
+  left:0;
+  background:linear-gradient(135deg,#d2ff28,#0f172a,#d2ff28);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  z-index:9999;
+  overflow:hidden;
+}
+
+/* PARTICLES */
+.particles span{
+  position:absolute;
+  width:6px;
+  height:6px;
+  background:#71f482;
+  border-radius:50%;
+  animation:float 6s linear infinite;
+}
+
+@keyframes float{
+  from{transform:translateY(100vh);}
+  to{transform:translateY(-10vh);}
+}
+
+/* LOGO CONTAINER */
+.loader-box{
+  position:relative;
+  width:140px;
+  height:140px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+/* ROTATING RING */
+.loader-box::before{
+  content:"";
+  position:absolute;
+  width:140px;
+  height:140px;
+  border-radius:50%;
+  border:3px solid transparent;
+  border-top:3px solid #d2ff28;
+  border-right:3px solid #22c55e;
+  animation:spin 1.5s linear infinite;
+}
+
+@keyframes spin{
+  to{transform:rotate(360deg);}
+}
+
+/* LOGO */
+.loader-box img{
+  width:70px;
+  z-index:2;
+  animation:pulse 2s infinite;
+}
+
+@keyframes pulse{
+  0%,100%{transform:scale(1);}
+  50%{transform:scale(1.1);}
+}
+
+/* TEXT */
+.loading-text{
+  margin-top:20px;
+  color:#d2ff28;
+  font-size:18px;
+  letter-spacing:1px;
+}
+
+/* PROGRESS */
+.progress{
+  margin-top:10px;
+  font-size:14px;
+  color:#94a3b8;
+}
+
+/* ================= RESPONSIVE ================= */
+@media(max-width:768px){
+  .loader-box{
+    width:110px;
+    height:110px;
+  }
+  .loader-box::before{
+    width:110px;
+    height:110px;
+  }
+  .loader-box img{
+    width:55px;
+  }
+  .loading-text{
+    font-size:16px;
+  }
+}
+
+@media(max-width:480px){
+  .loader-box{
+    width:90px;
+    height:90px;
+  }
+  .loader-box::before{
+    width:90px;
+    height:90px;
+  }
+  .loader-box img{
+    width:45px;
+  }
+  .loading-text{
+    font-size:14px;
+  }
+}
+  </style>
+  <script>
+    /* PARTICLES GENERATOR */
+    const particlesContainer=document.getElementById("particles");
+    
+    for(let i=0;i<40;i++){
+      let span=document.createElement("span");
+      span.style.left=Math.random()*100+"%";
+      span.style.animationDuration=(3+Math.random()*5)+"s";
+      span.style.opacity=Math.random();
+      particlesContainer.appendChild(span);
+    }
+    
+    /* LOADING COUNTER */
+    let count=0;
+    let progress=document.getElementById("progress");
+    
+    let interval=setInterval(()=>{
+      count++;
+      progress.innerText=count+"%";
+      if(count>=100){
+        clearInterval(interval);
+    
+        document.getElementById("preloader").style.opacity="0";
+        setTimeout(()=>{
+          document.getElementById("preloader").style.display="none";
+          document.getElementById("main-content").style.display="block";
+        },500);
+      }
+    },25);
+    </script>
+    
 
 <script>
 
@@ -1786,7 +2018,7 @@ function go404(e,btn){
     <!-- HEADER -->
     <div class="itcx-header itcx-reveal">
       <h2>Reliable IT Solutions for Better & Smarter</h2>
-      <a href="#" class="itcx-btn">Explore More <i class="fas fa-arrow-right"></i></a>
+      <a href="./404.html" class="itcx-btn">Explore More <i class="fas fa-arrow-right"></i></a>
     </div>
 
     <!-- TABS -->
@@ -3263,7 +3495,7 @@ document.querySelectorAll(".itstx-play").forEach(btn=>{
           
     <li><a href="./index.html">HOME</a></li>
       <li><a href="./about.html">ABOUT</a></li>
-          <li><a href="./services.html">SERVICES</a></li>
+          <li><a href="./service.html">SERVICES</a></li>
               <li><a href="./FAQ.html">FAQ</a></li>
                   <li><a href="./contact.html">CONTACT</a></li>
       </ul>
@@ -3541,12 +3773,11 @@ document.querySelectorAll(".itstx-play").forEach(btn=>{
       return;
     }
   
-    msg.style.color = "lightgreen";
-    msg.innerText = "Subscribed successfully!";
+    
   
     setTimeout(() => {
       window.location.href = "404.html";
-    }, 1200);
+    });
   }
   </script>
 
