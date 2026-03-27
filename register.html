@@ -20,6 +20,30 @@
   --cyber-text:#94a3b8;
 }
 
+/* FIX DROPDOWN VISIBILITY */
+.cyber-input select {
+  background: rgba(0, 0, 0, 0.6);  /* solid background */
+  color: #fff;
+}
+
+/* IMPORTANT: option styling */
+.cyber-input select option {
+  background: #020617;   /* dark solid */
+  color: #ffffff;        /* always visible */
+}
+
+/* Optional hover (works in some browsers) */
+.cyber-input select option:hover {
+  background: #0ea5e9;
+  color: #fff;
+}
+
+.cyber-input select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
 /* ===== GLOBAL ===== */
 *{
   margin:0;
